@@ -1,5 +1,6 @@
 package one.digitalinnovation.personapi.controller;
 
+import lombok.AllArgsConstructor;
 import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personapi.dto.request.PersonDTO;
 import one.digitalinnovation.personapi.exception.PersonNotFoundException;
@@ -13,19 +14,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 //@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonController {
 
     private PersonService personService;
 
-    //injeção de independencia do objeto que implementa a interface
+    //@autowired - injeção de independencia do objeto que implementa a interface
     //no caso esta dentro do construtor(facilita em TU's)
-    @Autowired
-    public PersonController(PersonService personService) {
-
-        this.personService = personService;
-    }
-
     //requisição do tipo pessoa
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
