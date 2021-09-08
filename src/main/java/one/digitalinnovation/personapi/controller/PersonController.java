@@ -29,18 +29,24 @@ public class PersonController {
     //requisição do tipo pessoa
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO){
+    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) {
         return personService.createPerson(personDTO);
     }
 
     @GetMapping
     public List<PersonDTO> listAll() {
         return personService.listAll();
-        }
-
-        @GetMapping("/{id}")
-        public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
-        return personService.finById(id);
-        }
     }
+
+    @GetMapping("/{id}")
+    public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
+        return personService.finById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id) throws PersonNotFoundException {
+        personService.delete(id);
+    }
+}
 
